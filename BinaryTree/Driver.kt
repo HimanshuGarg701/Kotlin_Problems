@@ -18,4 +18,12 @@ fun main(args : Array<String>){
 
     println("-----------IN-ORDER------------------")
     obj.iterativeInOrder()
+
+    println("-----------LEVEL-ORDER----------------")
+    obj.levelOrder()
+
+    println("----------RECURSIVE-LEVEL-ORDER---------")
+    obj.levelPrinting()
+
+    obj.arr2D()
 }

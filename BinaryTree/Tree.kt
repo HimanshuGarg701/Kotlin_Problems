@@ -1,19 +1,24 @@
 package BinaryTree
 
 import java.util.*
+import kotlin.collections.HashMap
 
 class Tree {
     var root : Node? = null
 
+    // Adding elements to the Binary Tree
     fun addElement(value : Int){
+        // Check if root is null, if yes than initialize the root
         if(root == null){
             root = Node(value)
         }
+        // if root is not null call the helper to add the next elements
         else{
             addHelper(root!!, value)
         }
     }
 
+    // Use recursion in the helper method to reach the right location
     private fun addHelper(node : Node?, value : Int) : Node{
         if(node==null){
             return Node(value)
@@ -125,6 +130,56 @@ class Tree {
                 println(nod.value)
                 nod = nod.right
             }
+        }
+    }
+
+    // Iterative level order traversal
+    fun levelOrder(){
+        if(root==null){
+            return
+        }
+        else{
+            levelOrderHelper(root)
+        }
+    }
+
+    private fun levelOrderHelper(node : Node?){
+        var que : Queue<Node> = LinkedList()
+        que.add(node)
+        while(!que.isEmpty()){
+            var removed = que.poll()
+            println(removed.value)
+            if(removed.left!=null){
+                que.add(removed.left)
+            }
+            if(removed.right!=null) {
+                que.add(removed.right)
+            }
+        }
+    }
+
+    fun levelPrinting(){
+        if(root==null){
+            return
+        }
+        else{
+            var map : HashMap<Int, ArrayList<Int>> = HashMap()
+            levelHelper(root, 1, map)
+            for(x in map.keys){
+                println(map.get(x).toString())
+            }
+        }
+    }
+
+    private fun levelHelper(node : Node?, level : Int, map:HashMap<Int, ArrayList<Int>>){
+        if(node!=null){
+            if(!map.containsKey(level)){
+                map.put(level, ArrayList<Int>())
+            }
+
+            map.get(level)!!.add(node.value)
+            levelHelper(node.left, level+1, map)
+            levelHelper(node.right, level+1, map)
         }
     }
 }
