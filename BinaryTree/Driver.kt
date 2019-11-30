@@ -10,4 +10,12 @@ fun main(args : Array<String>){
     obj.addElement(6)
 
     obj.printTree()
+    println("-----------PRE-ORDER----------------")
+    obj.preOrder()
+
+    println("------------POST-ORDER----------------")
+    obj.postOrder()
+
+    println("-----------IN-ORDER------------------")
+    obj.iterativeInOrder()
 }
