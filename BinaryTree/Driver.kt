@@ -1,0 +1,13 @@
+package BinaryTree
+
+fun main(args : Array<String>){
+    var obj = Tree()
+    obj.addElement(3)
+    obj.addElement(2)
+    obj.addElement(5)
+    obj.addElement(4)
+    obj.addElement(7)
+    obj.addElement(6)
+
+    obj.printTree()
+}
