@@ -24,6 +24,4 @@ fun main(args : Array<String>){
 
     println("----------RECURSIVE-LEVEL-ORDER---------")
     obj.levelPrinting()
-
-    obj.arr2D()
 }
