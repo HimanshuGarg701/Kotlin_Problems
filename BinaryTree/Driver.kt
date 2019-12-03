@@ -24,4 +24,7 @@ fun main(args : Array<String>){
 
     println("----------RECURSIVE-LEVEL-ORDER---------")
     obj.levelPrinting()
+
+    println("-----------------INVERTING------------------")
+    obj.invertTree(obj.root)
 }

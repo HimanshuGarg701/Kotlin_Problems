@@ -182,4 +182,25 @@ class Tree {
             levelHelper(node.right, level+1, map)
         }
     }
+
+    fun invertTree(node : Node?){
+        if(node == null){
+            return
+        }
+        else{
+            printHelper(invertHelper(node))
+        }
+    }
+
+    private fun invertHelper(node : Node?) : Node?{
+        if(node==null){
+            return null
+        }
+        var nodeRight = invertHelper(node.right)
+        var nodeLeft = invertHelper(node.left)
+
+        node.left = nodeRight
+        node.right = nodeLeft
+        return node
+    }
 }
