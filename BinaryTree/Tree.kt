@@ -23,11 +23,11 @@ class Tree {
         if(node==null){
             return Node(value)
         }
-        if(value < node.value){
+        if(value < node.value!!){
             node.left = addHelper(node.left, value)
         }
 
-        else if(value>node.value){
+        else if(value>node.value!!){
             node.right = addHelper(node.right, value)
         }
         else{
@@ -177,7 +177,7 @@ class Tree {
                 map.put(level, ArrayList<Int>())
             }
 
-            map.get(level)!!.add(node.value)
+            map.get(level)!!.add(node.value!!)
             levelHelper(node.left, level+1, map)
             levelHelper(node.right, level+1, map)
         }
@@ -202,5 +202,56 @@ class Tree {
         node.left = nodeRight
         node.right = nodeLeft
         return node
+    }
+
+    fun remove(data : Int){
+        removeHelper(data, root)
+    }
+
+    private fun removeHelper(data : Int, node : Node?) : Node?{
+        if(node==null){
+            return node
+        }
+        else{
+            if(node.value!! < data){
+                node.left = removeHelper(data, node.left)
+            }
+            else if(node.value!! > data){
+                node.right = removeHelper(data, node.right)
+            }
+            else{
+                if(node.right==null && node.left==null){
+                    node.value = null
+                }
+                else if(node.left==null){
+                    val replaceWith = node.right!!.value!!
+                    node.value = replaceWith
+                    node.right = null
+                }
+                else if(node.right==null){
+                    val replaceWith = node.left!!.value!!
+                    node.value = replaceWith
+                    node.left==null
+                }
+                else{
+                    val replaceWith = findMin(node.right)
+                    node.value = replaceWith
+                    removeHelper(replaceWith, node.right)
+                }
+            }
+        }
+        return node
+    }
+
+    private fun findMin(node : Node?) : Int{
+        if(node!=null){
+            if(node.left==null){
+                return node.value!!
+            }
+            else{
+                findMin(node.left)
+            }
+        }
+        return -1
     }
 }
