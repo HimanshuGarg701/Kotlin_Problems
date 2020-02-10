@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="module_kotlin_problems" default="compile.module.kotlin_problems">
+  <dirname property="module.kotlin_problems.basedir" file="${ant.file.module_kotlin_problems}"/>
+  
+  <property name="module.jdk.home.kotlin_problems" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.kotlin_problems" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.kotlin_problems" value="${project.jdk.classpath}"/>
+  
+  <property name="compiler.args.kotlin_problems" value="-encoding UTF-8 -source 13 -target 13 ${compiler.args}"/>
+  
+  <property name="kotlin_problems.output.dir" value="undefined"/>
+  <property name="kotlin_problems.testoutput.dir" value="undefined"/>
+  
+  <path id="kotlin_problems.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="kotlin_problems.module.production.classpath"/>
+  
+  <path id="kotlin_problems.runtime.production.module.classpath"/>
+  
+  <path id="kotlin_problems.module.classpath"/>
+  
+  <path id="kotlin_problems.runtime.module.classpath"/>
+  
+  
+  <patternset id="excluded.from.module.kotlin_problems">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.kotlin_problems">
+    <patternset refid="excluded.from.module.kotlin_problems"/>
+  </patternset>
+  
+  
+  <target name="compile.module.kotlin_problems" depends="compile.module.kotlin_problems.production,compile.module.kotlin_problems.tests" description="Compile module Kotlin_Problems"/>
+  
+  <target name="compile.module.kotlin_problems.production" depends="register.custom.compilers" description="Compile module Kotlin_Problems; production classes"/>
+  
+  <target name="compile.module.kotlin_problems.tests" depends="register.custom.compilers,compile.module.kotlin_problems.production" description="compile module Kotlin_Problems; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.kotlin_problems" description="cleanup module">
+    <delete dir="${kotlin_problems.output.dir}"/>
+    <delete dir="${kotlin_problems.testoutput.dir}"/>
+  </target>
+</project>
